@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
+const swaggerUi = require("swagger-ui-express");
+const openapiSpecification = require("./openapi.json");
 const PORT = 3000;
 app.use(express.json());
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
