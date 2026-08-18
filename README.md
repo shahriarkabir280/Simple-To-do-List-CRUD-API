@@ -25,6 +25,12 @@ The server starts on `http://localhost:3000`.
 | PUT    | `/tasks/:id`  | Update a task's `title` and/or `done` | 200     | 400, 404  |
 | DELETE | `/tasks/:id`  | Delete a task                         | 204     | 404       |
 
+## Extras
+
+| Method | Path                     | Description                                  | Success | Errors |
+|--------|--------------------------|-----------------------------------------------|---------|--------|
+| GET    | `/tasks/filter?done=true` | List tasks filtered by `done` (`true`/`false`) | 200     | 400    |
+
 ## Example request
 
 ```
@@ -61,6 +67,7 @@ http://localhost:3000/docs
 | `GET /tasks/:id` | ![Get single task](./docs/screenshot/getsingletask.png) |
 | `PUT /tasks/:id` | ![Update task](./docs/screenshot/updatetask.png) |
 | `DELETE /tasks/:id` | ![Delete task](./docs/screenshot/deletetask.png) |
+| `GET /tasks/filter` | ![Filter tasks by done](./docs/screenshot/filterbydone.png) |
 
 ## Data storage
 

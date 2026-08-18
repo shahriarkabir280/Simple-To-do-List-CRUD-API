@@ -42,8 +42,20 @@ app.get("/health", (req, res) =>{
     })
 });
 
+
 app.get("/tasks", (req, res ) =>{
     res.json(tasks);
+})
+
+app.get("/tasks/filter", (req, res) => {
+    const wantDone = req.query.done;
+    if(wantDone === undefined){
+      return res.status(400).json({
+        error: "Query parameter 'done' is required."
+      })
+    }
+    const filtered = tasks.filter(t => t.done ===(wantDone === "true"));
+    res.json(filtered);
 })
 
 app.get("/tasks/:id", (req, res) =>{
@@ -105,4 +117,3 @@ app.delete("/tasks/:id", (req, res) =>{
   tasks.splice(taskIndex, 1);
   res.status(204).send();
 })
-

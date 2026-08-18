@@ -65,6 +65,30 @@
         }
       }
     },
+    "/tasks/filter": {
+      "get": {
+        "summary": "List tasks filtered by done status",
+        "parameters": [
+          {
+            "name": "done",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["true", "false"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tasks matching the requested done status"
+          },
+          "400": {
+            "description": "Missing 'done' query parameter"
+          }
+        }
+      }
+    },
     "/tasks/{id}": {
       "get": {
         "summary": "Get a single task",
