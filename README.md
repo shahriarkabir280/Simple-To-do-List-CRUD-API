@@ -2,7 +2,7 @@
 
 A small to-do list API built with Node.js and Express — create, read, update, and delete tasks, with in-memory storage and interactive Swagger UI docs.
 
-Built as Week 2 Assignment A1 of the FlyRank Backend Internship (JavaScript lane).
+Built as Week 2 Assignment A1 of the [FlyRank Backend Internship](https://internship.flyrank.ai/) (JavaScript lane).
 
 ## Install & run
 
