@@ -2,6 +2,29 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+tasks = [
+  {
+    id: 1,
+    title: "Task 1",
+    done: false
+  },
+  {
+    id: 2,
+    title: "Task 2",
+    done: true
+  },
+  {
+    id: 3,
+    title: "Task 3",
+    done: false
+
+  } 
+]
+
 app.get("/", (req,res ) =>{
   res.json({
     name: "Task API",
@@ -12,10 +35,27 @@ app.get("/", (req,res ) =>{
 
 app.get("/health", (req, res) =>{
     res.json({
-      status: "OK"
+      status: "ok"
     })
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+app.get("/tasks", (req, res ) =>{
+    res.json(tasks);
+})
+
+app.get("/tasks/:id", (req, res) =>{
+  const id = parseInt(req.params.id);
+  const task = tasks.find(t => t.id === id);
+  if(task){
+    res.json(task);
+  }
+  else{
+    res.status(404).json({
+      error: `Task ${id} not found`
+    })
+  }
+})
+
+
+
+
