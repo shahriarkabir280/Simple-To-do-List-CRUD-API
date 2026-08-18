@@ -72,7 +72,34 @@ app.post("/tasks",(req, res) =>{
   res.status(201).json(newTask);
 })
 
+app.put("/tasks/:id", (req, res) =>{
+  const id = parseInt(req.params.id);
+  const task = tasks.find(t => t.id === id);
+  if(!task){
+    return res.status(404).json({
+      error: `Task ${id} not found`
+    })
+  }
+  const title = req.body.title;
+  const done =req.body.done;
+  if(title != undefined){
+    task.title = title;
+  }
+  if(done != undefined){
+    task.done = done;
+  }
+  res.json(task);
+})
 
-
-
+app.delete("/tasks/:id", (req, res) =>{
+  const id = parseInt(req.params.id);
+  const taskIndex = tasks.findIndex(t => t.id === id);
+  if(taskIndex === -1){
+    return res.status(404).json({
+      error: `Task ${id} not found`
+    })
+  }
+  tasks.splice(taskIndex, 1);
+  res.status(204).send();
+})
 
